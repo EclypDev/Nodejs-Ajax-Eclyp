@@ -3,7 +3,7 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import bodyparse from "body-parser";
-import route from "./routes.js";
+import routes from "./routes/index.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,14 +12,15 @@ const app = express();
 
 // MIDDLEWARES
 app.use(morgan("dev"));
+app.use(express.urlencoded({ extended: false }));
 app.use(bodyparse.json());
-// Llama a morgan como función y especifica el formato de registro "dev"
+// Llama a morgan como funcion y especifica el formato de registro "dev"
 
 // SETTINGS
 const PORT = process.env.PORT || 3000;
 
 // ROUTES
-app.use(route);
+app.use("/api/movies", routes);
 
 // STATIC Files
 app.use(express.static(filePath));
