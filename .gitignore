@@ -1,0 +1,46 @@
+# Ignorar archivos y directorios generados por el sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de dependencias de Node.js
+/node_modules
+/package-lock
+
+# Ignorar archivos y directorios específicos
+/build
+/dist
+/.env
+
+# Ignorar archivos de configuración de IDEs
+/.vscode
+/.idea
+
+# Ignorar archivos de registros o registros de errores
+/log
+*.log
+
+# Ignorar archivos de respaldo de editores de texto
+*~
+
+# Ignorar archivos de compilación
+*.o
+*.obj
+*.class
+
+# Ignorar archivos de paquetes de distribución
+*.tar.gz
+*.zip
+
+# Ignorar archivos de bases de datos
+*.db
+*.sqlite
+*.db.sqlite
+
+# Ignorar archivos de caché
+*.cache
+
+# Ignorar archivos de configuración personalizados
+.config
+.secrets
+
+# Ignorar cualquier otro archivo o patrón específico según tus necesidades
