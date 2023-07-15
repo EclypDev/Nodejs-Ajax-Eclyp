@@ -36,10 +36,14 @@ route.get("/movies", (req, res) => {
 route.post("/movies", (req, res) => {
   const { name } = req.body;
   console.log(req.body);
-  movies.push({
-    id: movies.length + 1,
-    name,
-  });
+  let nameCount = name.split("").length;
+  if (!nameCount == 2) {
+    console.log(nameCount);
+    movies.push({
+      id: movies.length + 1,
+      name,
+    });
+  }
   res.json("Successfully created");
 });
 
@@ -51,7 +55,16 @@ route.put("/movies/:id", (req, res) => {
       movie.name = name;
     }
   });
-  console.log(id, name);
+  res.json("recibido");
+});
+
+route.delete("/movies/:id", (req, res) => {
+  const { id } = req.params;
+  movies.forEach((movie, i) => {
+    if (movie.id == id) {
+      movies.splice(i, 1);
+    }
+  });
   res.json("recibido");
 });
 
