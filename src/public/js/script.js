@@ -15,6 +15,9 @@ $(function send() {
                   <input type="text" class="name" value="${movie.name}"/>
                 </td>
                 <td>
+                  <input type="text" class="price" value="${movie.price}"/>
+                </td>
+                <td>
                   <button class="update-button">UPDATE</button>
                   <button class="delete-button">DELETE</button>
                 </td>
@@ -27,14 +30,18 @@ $(function send() {
   $("#moviesForm").on("submit", (e) => {
     e.preventDefault();
     let newMovie = $("#newMovie");
+    let newMoviePrice = $("#newMoviePrecio");
+    console.log(newMoviePrice);
     $.ajax({
       url: URI,
       method: "POST",
       data: {
         name: newMovie.val(),
+        price: newMoviePrice.val(),
       },
       success: function (response) {
         newMovie.val("");
+        newMoviePrice.val("");
         $("#getMovies").click();
       },
       error: function (err) {
@@ -46,12 +53,14 @@ $(function send() {
     let row = $(this).closest("tr");
     let id = row.find(".id").text();
     let name = row.find(".name").val();
+    let price = row.find(".price").val();
 
     $.ajax({
       url: `${URI}/${id}`,
       method: "PUT",
       data: {
         name: name,
+        price: price,
       },
       success: function (response) {
         console.log(response);
