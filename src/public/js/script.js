@@ -33,13 +33,31 @@ $(function send() {
       data: {
         name: newMovie.val(),
       },
-      success: function (res) {
+      success: function (response) {
         newMovie.val("");
-        $("getMovies").click();
+        $("#getMovies").click();
       },
       error: function (err) {
         console.log(err);
       },
     });
   });
+  $("table").on("click", ".update-button", function () {
+    let row = $(this).closest("tr");
+    let id = row.find(".id").text();
+    let name = row.find(".name").val();
+
+    $.ajax({
+      url: `${URI}/${id}`,
+      method: "PUT",
+      data: {
+        name: name,
+      },
+      success: function (response) {
+        console.log(response);
+        $("#getMovies").click();
+      },
+    });
+  });
+  $("table").on("click", ".delete-button", function () {});
 });

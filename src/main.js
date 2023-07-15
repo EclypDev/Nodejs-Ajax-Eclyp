@@ -20,7 +20,7 @@ app.use(bodyparse.json());
 const PORT = process.env.PORT || 3000;
 
 // ROUTES
-app.use("/api/movies", routes);
+app.use("/api", routes);
 
 // STATIC Files
 app.use(express.static(filePath));

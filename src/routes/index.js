@@ -29,18 +29,30 @@ const movies = [
 //const filePath = path.join(__dirname, "public", "index.html");
 
 //routes
-route.get("/", (req, res) => {
+route.get("/movies", (req, res) => {
   res.json(movies);
 });
 
-route.post("/", (req, res) => {
-  console.log(req.body);
+route.post("/movies", (req, res) => {
   const { name } = req.body;
+  console.log(req.body);
   movies.push({
     id: movies.length + 1,
     name,
   });
   res.json("Successfully created");
+});
+
+route.put("/movies/:id", (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+  movies.forEach((movie) => {
+    if (movie.id == id) {
+      movie.name = name;
+    }
+  });
+  console.log(id, name);
+  res.json("recibido");
 });
 
 export default route;
